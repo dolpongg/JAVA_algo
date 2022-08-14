@@ -22,32 +22,34 @@ public class 순조부_기본 {
     }
     
     //순열
-    static void makePermutation(int nth, char[] choosed, boolean[] visited) {
-        if(nth == choosed.length) {
-        	System.out.println(Arrays.toString(choosed));
-        	return;
-        }
-        for(int i = 0; i < src.length; i++) {
-        	if(!visited[i]) {
-        		choosed[nth] = src[i];
-        		visited[i] = true;
-        		makePermutation(nth+1, choosed, visited);
-        		visited[i] = false;
-        	}
-        }
-    }
+   static void makePermutation(int nth, char[] choosed, boolean[] visited) {
+	   if(nth == choosed.length) {
+		   System.out.println(Arrays.toString(choosed));
+		   return;
+	   }
+	   for(int i = 0; i < src.length; i++) {
+		   if(!visited[i]) {
+			   visited[i] = true;
+			   choosed[nth] = src[i];
+			   makePermutation(nth+1, choosed, visited);
+			   
+			   visited[i] = false;
+		   }
+	   }
+   }
 
     // abc aab   --> 중복순열
-    static void makePermutationDup(int nth, char[] choosed) {
-        if(nth == choosed.length) {
-        	System.out.println(choosed);
-        	return;
-        }
-        for(int i = 0; i < src.length; i++) {
-        	choosed[nth] = src[i];
-        	makePermutationDup(nth+1, choosed);
-        }
-    }
+   static void makePermutationDup(int nth, char[] choosed) {
+	   if(nth == choosed.length) {
+		   System.out.println(Arrays.toString(choosed));
+		   return;
+	   }
+	   for(int i = 0; i < src.length; i++) {
+		   choosed[nth] = src[i];
+		   makePermutationDup(nth+1, choosed);
+	   }
+   }
+   
 
     /**
      * 조합: 중복되지 않게 뽑는데 순서가 없다!!!
@@ -57,12 +59,27 @@ public class 순조부_기본 {
      * @param startIdx
      */
     static void makeCombination(int nth, char[] choosed, int startIdx) {
-        
+        if(nth == choosed.length) {
+        	System.out.println(Arrays.toString(choosed));
+        	return;
+        }
+        for(int i = startIdx; i<src.length; i++ ) {
+        	choosed[nth] = src[i];
+        	makeCombination(nth+1, choosed, startIdx+1);
+        	
+        }
     }
 
     // 그럼 중복 조합은??
     static void makeCombinationDup(int nth, char[] choosed, int startIdx) {
-       
+       if(nth == choosed.length) {
+    	   System.out.println(Arrays.toString(choosed));
+    	   return;
+       }
+       for(int i = startIdx; i < src.length; i++) {
+    	   choosed[nth] = src[i];
+    	   makeCombinationDup(nth+1, choosed, i);
+       }
     }
 
     /**
@@ -73,7 +90,14 @@ public class 순조부_기본 {
      *            전체 요소의 체크 상태
      */
     static void powerSetDupPer(int toCheck, boolean[] checked) {
-        
+        if(toCheck == checked.length) {
+        	System.out.println(Arrays.toString(checked));
+        	return;
+        }
+        checked[toCheck] = true;
+        powerSetDupPer(toCheck+1, checked);
+        checked[toCheck] = false;
+        powerSetDupPer(toCheck + 1, checked);
     }
 
     static void print(boolean[] temp) {
