@@ -8,6 +8,16 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/**
+ * @author dolpong
+ * @date 2022.08.15
+ * @url https://www.acmicpc.net/problem/24444
+ * @git 
+ * @performance 
+ * @category BFS
+ * @note 출력되는 노드 순서가 아니라, 노드의 출력 순서!
+ */
+
 public class Silver2_24444_너비우선탐색1 {
 	static int N, M, R;
 
@@ -32,7 +42,7 @@ public class Silver2_24444_너비우선탐색1 {
 			G.get(y).add(x);
 		}//입력 완료
 		for(int i = 1; i <= N; i++) {
-			Collections.sort(G.get(i));
+			Collections.sort(G.get(i), Collections.reverseOrder());
 		}
 		bfs(G, R);
 
@@ -41,7 +51,7 @@ public class Silver2_24444_너비우선탐색1 {
 	public static void bfs(List<List<Integer>> G, int Start) {
 		StringBuilder sb = new StringBuilder();
 		Queue<Integer> queue = new LinkedList<>();
-		boolean [] visited = new boolean[N]; 
+		boolean [] visited = new boolean[N+1]; 
 		int [] order = new int[N+1];
 		int cnt=1;
 		visited[Start] = true;
