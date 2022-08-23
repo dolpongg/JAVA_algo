@@ -8,6 +8,7 @@ public class Silver2_13565_침투 {
 	static int[][] map;
 	static int[][] deltas = {{0,1}, {1,0}, {0,-1}, {-1,0}};
 	static boolean answer;
+	static boolean [][] visited;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -24,25 +25,29 @@ public class Silver2_13565_침투 {
 		}//입력 완료
 		
 		answer = false;
+		visited = new boolean [N][M];
 		for(int c = 0; c < M; c++) {
 			if(map[0][c] == 0) {
-				dfs(0,c, new boolean[N][M]);
+				dfs(0,c);
 				if(answer) break;
 			}
 		}
 		System.out.println(answer ? "YES" : "NO");
 	}
 
-	private static void dfs(int r, int c, boolean[][] visited) {
+	private static void dfs(int r, int c) {
 		if(r == N-1) {
 			answer = true;
 			return;
 		}
+		
 		for(int [] d : deltas) {
-			if(isIn(r + d[0], c + d[1]) && map[r + d[0]][c + d[1]] == 0 && !visited[r + d[0]][c + d[1]]) {
-				visited[r + d[0]][c + d[1]] = true;
-				dfs(r + d[0], c + d[1], visited);
-				
+			int nr = r + d[0];
+			int nc = c + d[1];
+			if(isIn(nr, nc) && map[nr][nc] == 0 && !visited[nr][nc]) {
+				visited[nr][nc] = true;
+				dfs(nr, nc);
+
 			}
 		}
 
