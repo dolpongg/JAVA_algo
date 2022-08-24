@@ -38,7 +38,9 @@ public class Gold4_2206_벽뿌수고이동하기 {
 	
 	
 	public static void go(int r, int c, int b, boolean [][] visited, int cnt) { 
-		if (answer == M + N -1 || answer <= cnt) return; // answer가 이미 최소거나 cnt가 answe보다 큰 경우 더 진행할 필요 없
+
+		if (answer == M + N -1 || answer <= cnt) return; // answer가 이미 최소거나 cnt가 answer보다 큰 경우 더 진행할 필요 없
+
 		
 		if (r == N && c == M) { // 더 방문할 노드가 남아는 있는데 이미 목적지에 도착한 경
 			answer = Math.min(answer, cnt);

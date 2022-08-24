@@ -18,6 +18,7 @@ public class Gold5_5014_스타트링크 {
 		int D = Integer.parseInt(st.nextToken());
 
 		boolean [] visited = new boolean[F+1];
+
 		
 		Queue<int[]> q = new LinkedList<>();
 		q.offer(new int[] {S,0});

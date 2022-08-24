@@ -47,6 +47,7 @@ public class Silver2_13565_침투 {
 			if(isIn(nr, nc) && map[nr][nc] == 0 && !visited[nr][nc]) {
 				visited[nr][nc] = true;
 				dfs(nr, nc);
+
 			}
 		}
 
