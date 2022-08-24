@@ -15,12 +15,45 @@ public class Gold5_5014_스타트링크 {
 		int U = Integer.parseInt(st.nextToken());
 		int D = Integer.parseInt(st.nextToken());
 
-		if(G > S) {
+		
+		
+		if(G == S) {
+			System.out.println(0);
+		}
+		else if(G > S) {
 			int gap = G-S;
+			if(U == 0) {
+				System.out.println("use the stairs");
+				return;
+			}
 			if(gap % U == 0) {
 				System.out.println(gap / U);
+				return;
 			}else {
-				if(gap / U)
+				
+				if(D==0 || gap%U%D != 0 || S + U * ((gap / U) + 1) > F) {
+					System.out.println("use the stairs");
+					return;
+				}
+				System.out.println((gap / U +1) + (gap%U)/D);
+				return;
+			}
+		}else{
+			int gap = S-G;
+			if(D == 0) {
+				System.out.println("use the stairs");
+				return;
+			}
+			if(gap % D == 0) {
+				System.out.println(gap / D);
+				return;
+			}else {
+				if(U == 0 || gap%D%U != 0 || G - D * ((gap / D) + 1) < 0) {
+					System.out.println("use the stairs");
+					return;
+				}
+				System.out.println((gap / D +1) + (gap%D)/U);
+				return;
 			}
 		}
 		
