@@ -22,7 +22,7 @@ public class Silver_1326_폴짝폴짝 {
 		int b = Integer.parseInt(st.nextToken()); //가고 싶은 곳  
 		//입력 완료
 
-		boolean[] visited = new boolean[b+1]; 
+		boolean[] visited = new boolean[N+1]; 
 		Queue<int[]> q = new LinkedList<>();
 		q.offer(new int[] {a,1});
 		
@@ -39,11 +39,19 @@ public class Silver_1326_폴짝폴짝 {
 			}
 			
 			int nStone = current[0] + stones[current[0]];
-			while(nStone <= b) {
+			while(nStone < stones.length) {
 				if(!visited[nStone]) {
 					visited[nStone] = true;
 					q.offer(new int[] {nStone,current[1]+1});
 					nStone+= stones[current[0]];
+				}
+			}
+			nStone = current[0] - stones[current[0]];
+			while(nStone > 0) {
+				if(!visited[nStone]) {
+					visited[nStone] = true;
+					q.offer(new int[] {nStone,current[1]+1});
+					nStone-= stones[current[0]];
 				}
 			}
 			
